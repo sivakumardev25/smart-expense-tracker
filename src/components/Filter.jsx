@@ -1,84 +1,125 @@
-function Filter({ filter, onFilterChange }) {
+function Filter({ filters, onFilterChange }) {
   return (
     //   Filter and sort section with white background, rounded corners, and shadow
-    <div className=" max-w-2xl text-items border-white bg-white rounded-xl p-4 shadow-md">
+    <div className=" max-w-2xl text-items bg-white rounded-xl border-2 p-6 shadow-md h-[320px]">
       {/* Filter and sort header */}
-      <h2 className="text-2xl font-semibold">Filters & Sort</h2>
-      <div className="grid grid-cols-3 gap-4 mb-4">
+      <h2 className="text-2xl font-bold mb-4">Filters & Sort</h2>
+      <div className="grid grid-cols-3 gap-4 mb-4 lex-grow">
         <div>
-          <label htmlFor="filter" className="mb-2">
+          <label
+            htmlFor="category"
+            className="mb-2 block text-sm font-bold text-gray-500"
+          >
             Category:
           </label>{" "}
           <select
-            id="filter"
-            value={filter}
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            id="category"
+            value={filters.category}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("category", e.target.value)}
           >
             {" "}
             <option value="">All</option>
-            <option value="Food">Food</option>{" "}
-            <option value="travel">Travel</option>{" "}
-            <option value="bills">Bills</option>{" "}
-            <option value="Entertainment">Entertainment</option>{" "}
-            <option value="Health">Health</option>{" "}
-            <option value="Education">Education</option>{" "}
-            <option value="Groceries">Groceries</option>{" "}
-            <option value="Savings">Savings</option>{" "}
-            <option value="Other">Other</option>{" "}
+            <option value="Food">🍔 Food</option>{" "}
+            <option value="travel">✈️ Travel</option>{" "}
+            <option value="bills">💡 Bills</option>{" "}
+            {/* <option value="Shopping">🛍️ Shopping</option>{" "} */}
+            <option value="Entertainment">🎬 Entertainment</option>{" "}
+            <option value="Health">💊 Health</option>{" "}
+            <option value="Education">📚 Education</option>{" "}
+            <option value="Groceries">🛒 Groceries</option>{" "}
+            <option value="Savings">💰 Savings</option>{" "}
+            <option value="Income">💵 Income</option>{" "}
+            <option value="Other">🔖 Other</option>{" "}
           </select>{" "}
         </div>
         {/* sort */}
         <div>
-          <label htmlFor="sort">Sort By:</label>{" "}
+          <label
+            htmlFor="sort"
+            className="mb-2 block text-sm font-bold text-gray-500"
+          >
+            Sort By:
+          </label>{" "}
           <select
             id="sort"
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("sort", e.target.value)}
           >
             <option value="newestfirst">Newest First</option>
             <option value="oldestfirst">Oldest First</option>
-            <option value="amount">Amount</option>
+            <option value="highestamount">Highest Amount</option>
+            <option value="lowestamount">Lowest Amount</option>
           </select>{" "}
         </div>{" "}
+        {/* Date range filter */}
         <div>
-          <label htmlFor="search">From Date: </label>{" "}
+          <label
+            htmlFor="fromDate"
+            className="mb-2 block text-sm font-bold text-gray-500 "
+          >
+            From Date:{" "}
+          </label>{" "}
           <input
             type="date"
-            id="search"
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            id="fromDate"
+            value={filters.fromDate}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("fromDate", e.target.value)}
           />{" "}
         </div>
         <div>
-          <label htmlFor="search">To Date: </label>{" "}
+          <label
+            htmlFor="toDate"
+            className="mb-2 block text-sm font-bold text-gray-500"
+          >
+            To Date:{" "}
+          </label>{" "}
           <input
             type="date"
-            id="search"
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            id="toDate"
+            value={filters.toDate}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("toDate", e.target.value)}
           />{" "}
         </div>
         <div>
-          <label htmlFor="search">Min Amount ($): </label>{" "}
+          <label
+            htmlFor="minAmount"
+            className="mb-2 block text-sm font-bold text-gray-500"
+          >
+            Min Amount ($):{" "}
+          </label>{" "}
           <input
             type="number"
-            id="search"
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            id="minAmount"
+            value={filters.minAmount}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("minAmount", e.target.value)}
           />{" "}
         </div>
+        {/* Amount range filter */}
         <div>
           {" "}
-          <label htmlFor="search">Max Amount ($): </label>{" "}
+          <label
+            htmlFor="maxAmount"
+            className="mb-2 block text-sm font-bold text-gray-500"
+          >
+            Max Amount ($):{" "}
+          </label>{" "}
           <input
             type="number"
-            id="search"
-            className="border rounded-md border-gray-400"
-            onChange={(e) => onFilterChange(e.target.value)}
+            id="maxAmount"
+            value={filters.maxAmount}
+            className="w-full h-12 border rounded-md border-gray-200 p-2"
+            onChange={(e) => onFilterChange("maxAmount", e.target.value)}
           />{" "}
         </div>
       </div>
+      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+       onClick={() => onFilterChange("reset", {})}>
+        Reset Filters
+      </button>
     </div>
   );
 }

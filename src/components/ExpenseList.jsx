@@ -5,7 +5,7 @@ function ExpenseList({ expenses, categories, onEdit, onDelete }) {
       <div>
         {expenses.length === 0 ? (
           // Display message when there are no expenses added yet
-          <p className="text-gray-500 text-center text-md">
+          <p className="text-gray-500 text-center align-center justify-center text-lg font-semibold">
             No expenses added yet.
           </p>
         ) : (
@@ -28,6 +28,7 @@ function ExpenseList({ expenses, categories, onEdit, onDelete }) {
                   </div>
                   <div>
                     <div className="font-bold">{exp.category}</div>
+                    <p className="text-xs text-gray-500">{exp.note}</p>
                     <div className="text-sm text-gray-500">{exp.date}</div>
                   </div>
                 </div>
@@ -35,10 +36,16 @@ function ExpenseList({ expenses, categories, onEdit, onDelete }) {
                   <h3 className="text-lg font-bold mr-4 text-blue-600 justify-center">
                     ${exp.amount.toFixed(2)}
                   </h3>
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                  {/* <button
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={() => onEdit(exp)}
+                  >
                     Edit
-                  </button>
-                  <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                  </button> */}
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => onDelete(exp.id)}
+                  >
                     Delete
                   </button>
                 </div>

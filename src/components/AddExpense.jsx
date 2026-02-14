@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ExpenseForm({ onAddExpense, categories }) {
+function AddExpense({ onAddExpense, categories }) {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
@@ -113,7 +113,7 @@ function ExpenseForm({ onAddExpense, categories }) {
         </div>
         <button
           type="submit"
-          className=" w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300"
+          className=" w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
         >
           + Add Expense
         </button>
@@ -122,4 +122,4 @@ function ExpenseForm({ onAddExpense, categories }) {
   );
 }
 
-export default ExpenseForm;
+export default AddExpense;
