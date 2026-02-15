@@ -1,6 +1,6 @@
 function ExpenseList({ expenses, categories, onEdit, onDelete }) {
   return (
-    <div className="border border-gray-50 bg-white rounded-lg shadow-md p-4 h-[400px] overflow-y-auto">
+    <div className="border bg-white rounded-lg shadow-md p-4 overflow-y-auto">
       <h2 className="text-2xl font-bold mb-4">Expenses List</h2>
       <div>
         {expenses.length === 0 ? (
@@ -34,9 +34,10 @@ function ExpenseList({ expenses, categories, onEdit, onDelete }) {
                 </div>
                 <div className="flex">
                   <h3 className="text-lg font-bold mr-4 text-blue-600 justify-center">
-                    ${exp.amount.toFixed(2)}
+                    ₹{exp.amount.toFixed(2)}
                   </h3>
                   {/* <button
+                  type="button"
                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
                     onClick={() => onEdit(exp)}
                   >

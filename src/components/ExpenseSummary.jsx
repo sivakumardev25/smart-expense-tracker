@@ -1,4 +1,3 @@
-
 // Summary card icons
 import { GiWallet } from "react-icons/gi";
 import { IoIosWallet } from "react-icons/io";
@@ -7,7 +6,6 @@ import { IoWallet } from "react-icons/io5";
 
 // Summary card component to display balance, income, expense, and savings
 function ExpenseSummary({ expenses }) {
-
   // Calculate total income and total expenses from the expenses array
   const income = expenses
     .filter((e) => e.category === "Income")
@@ -64,7 +62,7 @@ function ExpenseSummary({ expenses }) {
           <div>
             <p className="text-black font-serif text-md"> {item.title}</p>
             <h2 className={`${item.text} text-3xl font-bold mt-2`}>
-              $ {item.value.toLocaleString()}
+              ₹ {item.value.toLocaleString()}
             </h2>
           </div>
         </div>

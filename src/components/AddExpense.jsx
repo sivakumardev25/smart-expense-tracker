@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function AddExpense({ onAddExpense, categories }) {
   const [amount, setAmount] = useState("");
@@ -11,14 +12,18 @@ function AddExpense({ onAddExpense, categories }) {
     e.preventDefault();
 
     // Validate form fields    if (!amount || amount <= 0) {
+    if (!amount || amount <= 0) {
+      toast.error("Enter valid amount");
+      return;
+    }
     if (!category) {
-      alert("Please select a category");
+      toast.error("Please select a category");
       return;
     }
 
     // Handle form submission logic here
-    const data = { amount, date, category, note };
-    console.log("Expense Added:", data);
+    // const data = { amount, date, category, note };
+    // console.log("Expense Added:", data);
 
     // Create a new expense object with a unique ID and the form data
     const newExpense = {
@@ -31,8 +36,10 @@ function AddExpense({ onAddExpense, categories }) {
 
     onAddExpense(newExpense);
 
+    //  Show toast here after successful addition of expense
+    toast.success("Expense Added Successfully!");
+
     // Reset form fields after submission
-    alert("Expense Added Successfully!");
     setAmount("");
     setDate("");
     setCategory("");
@@ -40,7 +47,7 @@ function AddExpense({ onAddExpense, categories }) {
   };
 
   return (
-    <div className="max-w-2xl text-items bg-white rounded-xl border-2 p-6 shadow-md">
+    <div className="max-w-2xl bg-white rounded-xl border-2 p-6 shadow-md ">
       {/* Form header */}
       <h2 className="text-2xl font-bold mb-4"> Add New Expense</h2>
       {/* Form action */}
@@ -50,7 +57,7 @@ function AddExpense({ onAddExpense, categories }) {
           {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-2"></div> */}
           <div>
             <label className="text-sm font-bold text-gray-500">
-              Amount ($)<span className="text-red-500 text-lg">*</span>
+              Amount (₹)<span className="text-red-500 text-lg">*</span>
             </label>
             <input
               type="number"
@@ -113,6 +120,7 @@ function AddExpense({ onAddExpense, categories }) {
         </div>
         <button
           type="submit"
+          // disabled={!amount || !date || !category} // Disable button if required fields are not filled
           className=" w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
         >
           + Add Expense
