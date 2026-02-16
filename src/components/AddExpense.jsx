@@ -32,6 +32,7 @@ function AddExpense({ onAddExpense, categories }) {
       date,
       category,
       note,
+      type: category === "Income" ? "income" : "expense",
     };
 
     onAddExpense(newExpense);
@@ -121,7 +122,7 @@ function AddExpense({ onAddExpense, categories }) {
         <button
           type="submit"
           // disabled={!amount || !date || !category} // Disable button if required fields are not filled
-          className=" w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
+          className=" w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
         >
           + Add Expense
         </button>

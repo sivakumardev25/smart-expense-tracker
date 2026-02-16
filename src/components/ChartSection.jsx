@@ -35,11 +35,13 @@ function ChartSection({ expenses }) {
 
     const grouped = {};
 
-    expenses.forEach((exp) => {
-      const category = exp.category || "Other";
-      const amount = Number(exp.amount) || 0;
-      grouped[category] = (grouped[category] || 0) + amount;
-    });
+    expenses
+      .filter((exp) => exp.type === "expense" && exp.category !== "Savings")
+      .forEach((exp) => {
+        const category = exp.category || "Other";
+        const amount = Number(exp.amount) || 0;
+        grouped[category] = (grouped[category] || 0) + amount;
+      });
 
     setExpenseData({
       labels: Object.keys(grouped),

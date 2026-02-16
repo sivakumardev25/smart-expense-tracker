@@ -33,7 +33,12 @@ function ExpenseList({ expenses, categories, onEdit, onDelete }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <h3 className="text-lg font-bold mr-4 text-blue-600 justify-center">
+                  <h3
+                    className={`text-lg font-bold mr-4 ${
+                      exp.type === "income" ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {/* className="text-lg font-bold mr-4 text-blue-600 justify-center"> */}
                     ₹{exp.amount.toFixed(2)}
                   </h3>
                   {/* <button

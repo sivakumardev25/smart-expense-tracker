@@ -8,16 +8,21 @@ import { IoWallet } from "react-icons/io5";
 function ExpenseSummary({ expenses }) {
   // Calculate total income and total expenses from the expenses array
   const income = expenses
-    .filter((e) => e.category === "Income")
+    .filter((e) => e.type === "income")
     .reduce((total, e) => total + e.amount, 0);
 
   const totalExpense = expenses
-    .filter((e) => e.category !== "Income")
+    // .filter((e) => e.type === "expense")
+    .filter((e) => e.type === "expense" && e.category !== "Savings")
+    .reduce((total, e) => total + e.amount, 0);
+
+  const savings = expenses
+    .filter((e) => e.category === "Savings")
     .reduce((total, e) => total + e.amount, 0);
 
   // Calculate balance and savings
-  const balance = income - totalExpense;
-  const savings = balance > 0 ? balance : 0;
+  const balance = income - totalExpense - savings;
+  // const savings = balance > 0 ? balance : 0;
 
   // Define summary cards with icons, titles, values, and styles
   const cards = [
